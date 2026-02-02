@@ -1,0 +1,39 @@
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+DerivedData/
+build/
+Pods/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# OS
+.DS_Store
+*.swp
+*~
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.pbxuser
+!default.pbxuser
+
+# Instruments
+*.trace
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
