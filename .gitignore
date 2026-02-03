@@ -1,39 +1,32 @@
 # Xcode
-*.xcodeproj/
-*.xcworkspace/
+*.xcodeproj
+*.xcworkspace
 xcuserdata/
 *.xccheckout
 *.moved-aside
+DerivedData/
 *.hmap
 *.ipa
 *.dSYM.zip
 *.dSYM
-DerivedData/
-build/
-Pods/
 
 # Swift Package Manager
 .build/
 .swiftpm/
 Package.resolved
 
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
 # OS
 .DS_Store
 *.swp
-*~
+*~.nib
 Thumbs.db
 
 # IDE
-.idea/
-.vscode/
-*.pbxuser
-!default.pbxuser
-
-# Instruments
-*.trace
-
-# Fastlane
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots
-fastlane/test_output
+*.idea/
+*.vscode/
