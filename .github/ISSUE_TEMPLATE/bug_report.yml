@@ -1,43 +1,52 @@
-name: 🐛 Bug Report
-description: Report a bug to help us improve
+name: Bug Report
+description: File a bug report to help us improve
+title: "[Bug]: "
 labels: ["bug", "triage"]
 body:
   - type: textarea
     id: description
     attributes:
-      label: Describe the bug
-      description: A clear description of what the bug is.
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
     validations:
       required: true
-      
+
   - type: textarea
     id: reproduction
     attributes:
-      label: Steps to reproduce
-      placeholder: |
-        1. Go to '...'
-        2. Click on '...'
-        3. See error
+      label: Steps to Reproduce
     validations:
       required: true
-      
+
   - type: textarea
     id: expected
     attributes:
-      label: Expected behavior
+      label: Expected Behavior
     validations:
       required: true
-      
-  - type: input
-    id: ios-version
+
+  - type: textarea
+    id: code
     attributes:
-      label: iOS Version
-      placeholder: "17.0"
+      label: Code Sample
+      render: swift
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      multiple: true
+      options:
+        - iOS
+        - macOS
+        - tvOS
+        - visionOS
     validations:
       required: true
-      
+
   - type: input
-    id: swift-version
+    id: os-version
     attributes:
-      label: Swift Version
-      placeholder: "5.9"
+      label: OS Version
+    validations:
+      required: true
