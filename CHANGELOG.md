@@ -7,19 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.0] - 2024-02-03
+## [1.0.0] - 2024-01-15
 
 ### Added
-- Initial release
-- Type-safe route definitions with associated values
-- Deep linking support with automatic parameter extraction
-- Universal Links handling
-- SwiftUI NavigationStack integration
-- UIKit UINavigationController support
-- Async/await navigation API
-- State restoration and persistence
-- Comprehensive documentation
-- Full test coverage
+- High-performance particle system with Metal rendering
+- Pre-built emitter presets (fire, smoke, snow, rain, confetti)
+- Custom particle behaviors and physics
+- SwiftUI and UIKit integration
+- Real-time particle editing
+- Gravity, wind, and turbulence forces
+- Particle color gradients over lifetime
+- Size and alpha animations
+- Collision detection support
+- Burst and continuous emission modes
 
-[Unreleased]: https://github.com/muhittincamdali/SwiftRouter/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/muhittincamdali/SwiftRouter/releases/tag/v1.0.0
+[Unreleased]: https://github.com/muhittincamdali/SwiftParticles/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/muhittincamdali/SwiftParticles/releases/tag/v1.0.0

@@ -1,43 +1,40 @@
-# Contributing to SwiftRouter
+# Contributing to SwiftParticles
 
-Thank you for your interest in contributing! 🎉
+Thank you for considering contributing to SwiftParticles!
 
-## How to Contribute
+## How Can I Contribute?
 
 ### Reporting Bugs
 
-- Check existing issues first
-- Include reproduction steps
-- Include Swift/Xcode version
-
-### Suggesting Features
-
-- Open an issue with the `enhancement` label
-- Explain the use case
+- Use a clear and descriptive title
+- Describe the exact steps which reproduce the problem
+- Include Swift version and OS version
 
 ### Pull Requests
 
-1. Fork the repository
-2. Create your branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Code Style
-
-- Follow existing code style
-- Run SwiftLint before committing
-- Add tests for new features
-- Update documentation
+1. Fork the repo and create your branch from `main`
+2. If you've added code that should be tested, add tests
+3. Ensure the test suite passes
+4. Make sure your code follows the existing style (SwiftLint)
 
 ## Development Setup
 
 ```bash
-git clone https://github.com/muhittincamdali/SwiftRouter.git
-cd SwiftRouter
+git clone https://github.com/YOUR_USERNAME/SwiftParticles.git
+cd SwiftParticles
 open Package.swift
+swift test
 ```
 
-## Questions?
+## Commit Messages
 
-Open an issue with the `question` label.
+We follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+- `feat:` A new feature
+- `fix:` A bug fix
+- `docs:` Documentation only changes
+- `perf:` Performance improvements
+
+## License
+
+By contributing, you agree that your contributions will be licensed under the MIT License.
