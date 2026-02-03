@@ -8,9 +8,9 @@ let package = Package(
     platforms: [
         .iOS(.v16),
         .macOS(.v13),
-        .visionOS(.v1),
         .tvOS(.v16),
-        .watchOS(.v9)
+        .watchOS(.v9),
+        .visionOS(.v1)
     ],
     products: [
         .library(
@@ -21,16 +21,13 @@ let package = Package(
     targets: [
         .target(
             name: "SwiftParticles",
-            path: "Sources/SwiftParticles",
-            resources: [
-                .process("Renderer/ParticleShader.metal")
-            ]
+            dependencies: [],
+            path: "Sources/SwiftParticles"
         ),
         .testTarget(
             name: "SwiftParticlesTests",
             dependencies: ["SwiftParticles"],
             path: "Tests/SwiftParticlesTests"
         )
-    ],
-    swiftLanguageVersions: [.v5]
+    ]
 )
