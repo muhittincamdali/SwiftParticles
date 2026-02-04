@@ -1,60 +1,53 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/muhittincamdali/SwiftParticles/main/Assets/logo.png" alt="SwiftParticles Logo" width="200">
+  <img src="Assets/logo.png" alt="SwiftParticles" width="200"/>
 </p>
 
 <h1 align="center">SwiftParticles</h1>
 
 <p align="center">
-  <strong>✨ High-performance particle system for Swift and SwiftUI</strong>
+  <strong>✨ GPU-accelerated particle system for SwiftUI with Metal shaders</strong>
 </p>
 
 <p align="center">
-  <a href="https://swift.org"><img src="https://img.shields.io/badge/Swift-5.9+-F05138?style=flat-square&logo=swift&logoColor=white" alt="Swift 5.9+"></a>
-  <a href="https://developer.apple.com/ios/"><img src="https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20visionOS-blue?style=flat-square" alt="Platforms"></a>
-  <a href="https://swift.org/package-manager/"><img src="https://img.shields.io/badge/SPM-Compatible-brightgreen?style=flat-square&logo=swift" alt="SPM Compatible"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT"></a>
-  <br>
-  <a href="https://github.com/muhittincamdali/SwiftParticles/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/muhittincamdali/SwiftParticles/ci.yml?branch=main&style=flat-square&logo=github&label=CI" alt="CI Status"></a>
-  <a href="https://github.com/muhittincamdali/SwiftParticles/stargazers"><img src="https://img.shields.io/github/stars/muhittincamdali/SwiftParticles?style=flat-square&logo=github" alt="Stars"></a>
-  <a href="https://github.com/muhittincamdali/SwiftParticles/graphs/contributors"><img src="https://img.shields.io/github/contributors/muhittincamdali/SwiftParticles?style=flat-square" alt="Contributors"></a>
-  <a href="https://github.com/muhittincamdali/SwiftParticles/issues"><img src="https://img.shields.io/github/issues/muhittincamdali/SwiftParticles?style=flat-square" alt="Issues"></a>
-</p>
-
-<p align="center">
-  <a href="#features">Features</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#quick-start">Quick Start</a> •
-  <a href="#presets">Presets</a> •
-  <a href="#contributing">Contributing</a>
+  <a href="https://github.com/muhittincamdali/SwiftParticles/actions/workflows/ci.yml">
+    <img src="https://github.com/muhittincamdali/SwiftParticles/actions/workflows/ci.yml/badge.svg" alt="CI"/>
+  </a>
+  <img src="https://img.shields.io/badge/Swift-6.0-orange.svg" alt="Swift 6.0"/>
+  <img src="https://img.shields.io/badge/iOS-17.0+-blue.svg" alt="iOS 17.0+"/>
+  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"/>
 </p>
 
 ---
 
-## ✨ Features
+## Why SwiftParticles?
 
-- **🚀 Metal-Powered** — GPU-accelerated rendering for thousands of particles at 60+ FPS
-- **🎨 SwiftUI Native** — First-class SwiftUI support with declarative API
-- **📦 Pre-built Presets** — Fire, smoke, snow, rain, confetti, and more
-- **🔧 Highly Customizable** — Control every aspect of particle behavior
-- **🌊 Physics Simulation** — Gravity, wind, turbulence, and collision
-- **🎭 Lifetime Animations** — Color, size, and alpha changes over time
-- **⚡ Optimized** — Particle pooling and efficient memory management
-- **📱 Multi-Platform** — iOS, macOS, tvOS, and visionOS support
+Creating beautiful particle effects in iOS is complex - Core Animation has limits, SpriteKit is heavy, and Metal requires shader knowledge. **SwiftParticles** provides stunning GPU-accelerated effects with a SwiftUI-native API.
 
-## 📋 Requirements
+```swift
+// Create confetti in one line
+ParticleView(.confetti)
 
-| Platform | Minimum Version |
-|----------|----------------|
-| iOS      | 15.0+          |
-| macOS    | 12.0+          |
-| tvOS     | 15.0+          |
-| visionOS | 1.0+           |
-| Swift    | 5.9+           |
-| Xcode    | 15.0+          |
+// Or customize everything
+ParticleView(.custom) {
+    $0.emissionRate = 100
+    $0.lifetime = 3.0
+    $0.velocity = CGVector(dx: 0, dy: -200)
+    $0.color = .gradient([.red, .orange, .yellow])
+}
+```
 
-## 📦 Installation
+## Features
 
-### Swift Package Manager
+| Feature | Description |
+|---------|-------------|
+| ⚡ **GPU-Powered** | Metal-accelerated, 60fps |
+| 🎨 **20+ Presets** | Confetti, snow, fire, rain, stars |
+| 🔧 **Customizable** | Full control over every parameter |
+| 📱 **SwiftUI Native** | Declarative, reactive API |
+| 🎯 **Gestures** | Touch-reactive particles |
+| 📊 **Performance** | 10,000+ particles at 60fps |
+
+## Installation
 
 ```swift
 dependencies: [
@@ -62,78 +55,98 @@ dependencies: [
 ]
 ```
 
-### CocoaPods
-
-```ruby
-pod 'SwiftParticles', '~> 1.0'
-```
-
-## 🚀 Quick Start
-
-### SwiftUI
+## Quick Start
 
 ```swift
-import SwiftUI
 import SwiftParticles
 
-struct ContentView: View {
+struct CelebrationView: View {
     var body: some View {
         ZStack {
-            Color.black
-            ParticleEmitter(preset: .fire)
-                .frame(width: 200, height: 300)
+            // Your content
+            Text("🎉 Congratulations!")
+            
+            // Confetti overlay
+            ParticleView(.confetti)
+                .allowsHitTesting(false)
         }
     }
 }
 ```
 
-### Custom Configuration
+## Presets
+
+| Preset | Effect |
+|--------|--------|
+| `.confetti` | Celebration confetti |
+| `.snow` | Falling snowflakes |
+| `.rain` | Rain drops |
+| `.fire` | Flickering flames |
+| `.smoke` | Rising smoke |
+| `.stars` | Twinkling stars |
+| `.sparkle` | Magic sparkles |
+| `.bubbles` | Floating bubbles |
+| `.firework` | Explosion burst |
+| `.hearts` | Floating hearts |
+
+## Customization
 
 ```swift
-let emitter = ParticleEmitter {
-    Particle()
-        .birthRate(100)
-        .lifetime(2.0...4.0)
-        .velocity(50...150)
-        .emissionAngle(-90, spread: 30)
-        .scale(0.1...0.5)
-        .colorOverLifetime([.white, .yellow, .orange, .clear])
+ParticleView(.custom) { config in
+    // Emission
+    config.emissionRate = 50
+    config.emissionShape = .circle(radius: 100)
+    
+    // Appearance
+    config.particleImage = Image("spark")
+    config.color = .random([.red, .blue, .green])
+    config.size = 10...20
+    config.opacity = 0.5...1.0
+    
+    // Motion
+    config.velocity = CGVector(dx: 0, dy: -100)
+    config.velocityVariation = 50
+    config.acceleration = CGVector(dx: 0, dy: 50)
+    
+    // Lifetime
+    config.lifetime = 2.0
+    config.lifetimeVariation = 0.5
+    
+    // Effects
+    config.spin = .random(-180...180)
+    config.fadeOut = true
+    config.scaleOverLife = [1.0, 0.5, 0.0]
 }
 ```
 
-## 🎨 Presets
+## Touch Interaction
 
-| Preset | Description |
-|--------|-------------|
-| `.fire` | Realistic flame effect |
-| `.smoke` | Soft, billowing smoke |
-| `.snow` | Gentle falling snowflakes |
-| `.rain` | Rainfall with streaks |
-| `.confetti` | Celebration confetti burst |
-| `.sparkle` | Twinkling sparkle effect |
+```swift
+ParticleView(.sparkle)
+    .touchEmission(true) // Emit at touch points
+    .gestureVelocity(true) // Particles follow swipe direction
+```
 
-## 📖 Documentation
+## Performance Tips
 
-See the [Documentation](Documentation/) folder.
+```swift
+// For many particles
+ParticleView(.snow) { config in
+    config.renderingMode = .metal // Default, fastest
+    config.maxParticles = 1000
+}
 
-## 🛡️ Security
+// For battery saving
+ParticleView(.stars) { config in
+    config.frameRate = 30
+    config.reducedMotion = true
+}
+```
 
-See [SECURITY.md](SECURITY.md).
-
-## 🤝 Contributing
+## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## 📄 License
+## License
 
-MIT License - see [LICENSE](LICENSE).
-
-## 👨‍💻 Author
-
-**Muhittin Camdali** - [@muhittincamdali](https://github.com/muhittincamdali)
-
----
-
-<p align="center">
-  <sub>Built with ❤️ for the Swift community</sub>
-</p>
+MIT License
