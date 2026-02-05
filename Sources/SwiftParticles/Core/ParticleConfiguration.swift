@@ -139,6 +139,36 @@ public struct ParticleConfiguration: Sendable {
     /// Trail opacity at the tail end (0-1).
     public var trailOpacity: Double
 
+    /// Trail fade rate.
+    public var trailFadeRate: Double
+
+    /// Whether particles bounce on ground collision.
+    public var bounceOnGround: Bool
+
+    /// Bounce factor for ground collision.
+    public var bounceFactor: Double
+
+    /// Whether particles have orbital motion.
+    public var orbitalMotion: Bool
+
+    /// Center point for orbital motion.
+    public var orbitalCenter: CGPoint
+
+    /// Orbital motion speed.
+    public var orbitalSpeed: Double
+
+    /// Whether particles spiral inward.
+    public var spiralInward: Bool
+
+    /// Spiral rate.
+    public var spiralRate: Double
+
+    /// Stretch factor based on velocity.
+    public var stretchFactor: Double
+
+    /// Speed change over lifetime.
+    public var speedOverLifetime: [Double: Double]
+
     /// Whether to enable particle shadows.
     public var shadowEnabled: Bool
 
@@ -192,6 +222,16 @@ public struct ParticleConfiguration: Sendable {
         self.trailEnabled = false
         self.trailLength = 10
         self.trailOpacity = 0.3
+        self.trailFadeRate = 0.15
+        self.bounceOnGround = false
+        self.bounceFactor = 0.5
+        self.orbitalMotion = false
+        self.orbitalCenter = .zero
+        self.orbitalSpeed = 1.0
+        self.spiralInward = false
+        self.spiralRate = 0.1
+        self.stretchFactor = 1.0
+        self.speedOverLifetime = [:]
         self.shadowEnabled = false
         self.shadowOffset = CGSize(width: 0, height: 2)
         self.shadowRadius = 4

@@ -1,3 +1,4 @@
+// Available on iOS 16+, macOS 14+, tvOS 16+, watchOS 9+, visionOS 1+
 // ParticleModifier.swift
 // SwiftParticles
 //

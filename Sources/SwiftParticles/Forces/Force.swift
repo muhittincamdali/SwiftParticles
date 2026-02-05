@@ -253,7 +253,7 @@ public final class CompositeForce: BaseForce {
         return result * strength
     }
     
-    public override func reset() {
+    public func reset() {
         for force in forces {
             force.reset()
         }
@@ -315,7 +315,7 @@ public final class TimedForce: BaseForce {
         return wrappedForce.calculateForce(for: particle, deltaTime: deltaTime) * strength
     }
     
-    public override func reset() {
+    public func reset() {
         currentTime = 0
         wrappedForce.reset()
     }
@@ -350,7 +350,7 @@ public final class ConditionalForce: BaseForce {
         return wrappedForce.calculateForce(for: particle, deltaTime: deltaTime) * strength
     }
     
-    public override func reset() {
+    public func reset() {
         wrappedForce.reset()
     }
 }

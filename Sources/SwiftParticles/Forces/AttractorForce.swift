@@ -214,7 +214,7 @@ public final class AttractorForce: BaseForce {
         return self
     }
     
-    public override func reset() {
+    public func reset() {
         pathIndex = 0
         if !pathPoints.isEmpty {
             position = pathPoints[0]

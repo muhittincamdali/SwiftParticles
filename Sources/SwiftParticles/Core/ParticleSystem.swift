@@ -27,6 +27,7 @@ import QuartzCore
 /// system.addForce(GravityForce(strength: 98))
 /// system.start()
 /// ```
+@available(iOS 16.0, macOS 14.0, tvOS 16.0, watchOS 9.0, visionOS 1.0, *)
 @MainActor
 public final class ParticleSystem: ObservableObject {
     
@@ -82,7 +83,11 @@ public final class ParticleSystem: ObservableObject {
     private var particlePool: ParticlePool
     
     /// Display link for frame updates.
+    #if os(iOS) || os(tvOS)
     private var displayLink: CADisplayLink?
+    #else
+    private var timer: Timer?
+    #endif
     
     /// Timestamp of the last update.
     private var lastUpdateTime: CFTimeInterval = 0
@@ -127,7 +132,12 @@ public final class ParticleSystem: ObservableObject {
     }
     
     deinit {
-        stop()
+        // Clean up timer/displayLink synchronously
+        #if os(iOS) || os(tvOS)
+        displayLink?.invalidate()
+        #else
+        timer?.invalidate()
+        #endif
     }
     
     // MARK: - Emitter Management
@@ -226,9 +236,14 @@ public final class ParticleSystem: ObservableObject {
     public func stop() {
         state = .stopped
         
-        // Stop display link
+        // Stop display link/timer
+        #if os(iOS) || os(tvOS)
         displayLink?.invalidate()
         displayLink = nil
+        #else
+        timer?.invalidate()
+        timer = nil
+        #endif
         
         // Stop all emitters
         for emitter in emitters {
@@ -281,6 +296,7 @@ public final class ParticleSystem: ObservableObject {
     
     /// Sets up the display link for frame updates.
     private func setupDisplayLink() {
+        #if os(iOS) || os(tvOS)
         displayLink?.invalidate()
         
         displayLink = CADisplayLink(target: self, selector: #selector(displayLinkFired))
@@ -290,8 +306,17 @@ public final class ParticleSystem: ObservableObject {
             preferred: 60
         )
         displayLink?.add(to: .main, forMode: .common)
+        #else
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0/60.0, repeats: true) { [weak self] _ in
+            Task { @MainActor in
+                self?.timerFired()
+            }
+        }
+        #endif
     }
     
+    #if os(iOS) || os(tvOS)
     /// Called each frame by the display link.
     @objc private func displayLinkFired(_ link: CADisplayLink) {
         guard state == .running && !isPaused else { return }
@@ -306,6 +331,30 @@ public final class ParticleSystem: ObservableObject {
         // Apply time scale
         deltaTime *= timeScale
         
+        // Update the system
+        performUpdate(deltaTime: deltaTime)
+    }
+    #else
+    /// Called each frame by the timer.
+    private func timerFired() {
+        guard state == .running && !isPaused else { return }
+        
+        let currentTime = CACurrentMediaTime()
+        var deltaTime = lastUpdateTime == 0 ? 1.0/60.0 : currentTime - lastUpdateTime
+        lastUpdateTime = currentTime
+        
+        // Clamp delta time to prevent spiral of death
+        deltaTime = min(deltaTime, 0.1)
+        
+        // Apply time scale
+        deltaTime *= timeScale
+        
+        // Update the system
+        performUpdate(deltaTime: deltaTime)
+    }
+    #endif
+    
+    private func performUpdate(deltaTime: Double) {
         // Update the system
         update(deltaTime: deltaTime)
     }
@@ -570,6 +619,7 @@ public struct ParticleStatistics: Sendable {
 
 // MARK: - Convenience Extensions
 
+@available(iOS 16.0, macOS 14.0, tvOS 16.0, watchOS 9.0, visionOS 1.0, *)
 extension ParticleSystem {
     
     /// Creates a particle system with a preset configuration.

@@ -312,7 +312,7 @@ public final class CompositeBehavior: BaseBehavior {
         }
     }
     
-    public override func reset() {
+    public func reset() {
         for behavior in behaviors {
             behavior.reset()
         }

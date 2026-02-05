@@ -256,7 +256,7 @@ public final class VortexForce: BaseForce {
         return self
     }
     
-    public override func reset() {
+    public func reset() {
         currentAngle = 0
     }
 }
