@@ -235,7 +235,7 @@ public final class TurbulenceForce: BaseForce {
         return self
     }
     
-    public override func reset() {
+    public func reset() {
         currentTime = 0
     }
 }

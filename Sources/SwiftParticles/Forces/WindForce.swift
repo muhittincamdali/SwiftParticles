@@ -230,7 +230,7 @@ public final class WindForce: BaseForce {
         return self
     }
     
-    public override func reset() {
+    public func reset() {
         currentGust = 1.0
         gustTimer = 0
         gustRemaining = 0
