@@ -1,6 +1,4 @@
 // swift-tools-version: 5.9
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
 
 let package = Package(
@@ -13,21 +11,19 @@ let package = Package(
         .visionOS(.v1)
     ],
     products: [
-        .library(
-            name: "SwiftParticles",
-            targets: ["SwiftParticles"]
-        )
+        .library(name: "SwiftParticles", targets: ["SwiftParticles"]),
     ],
     targets: [
         .target(
             name: "SwiftParticles",
-            dependencies: [],
-            path: "Sources/SwiftParticles"
+            path: "Sources/SwiftParticles",
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency")
+            ]
         ),
         .testTarget(
             name: "SwiftParticlesTests",
-            dependencies: ["SwiftParticles"],
-            path: "Tests/SwiftParticlesTests"
+            dependencies: ["SwiftParticles"]
         )
     ]
 )
