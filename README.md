@@ -6,6 +6,8 @@
 
 ---
 
+## 🚀 Killer Feature: SIMD Fluid Dynamics Engine
+Not just simple dots. Our particle engine includes a natively built Navier-Stokes fluid dynamics solver, executed entirely via SIMD instructions for 60fps liquid animations.
 > **🛡️ PART OF THE 2026 UNIFIED CORE**
 > This repository is a verified component of 'The Endless March' initiative. Purified for Swift 6, zero-dependency, and engineered for maximum hardware saturation.
 > 
